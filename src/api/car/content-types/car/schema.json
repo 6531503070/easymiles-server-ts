@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "capacity": {
+    "seat_capacity": {
       "type": "integer"
     },
     "transmission": {
@@ -75,12 +75,6 @@
     "model": {
       "type": "string"
     },
-    "fevorites": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::fevorite.fevorite",
-      "mappedBy": "car"
-    },
     "reviews": {
       "type": "relation",
       "relation": "oneToMany",
@@ -96,6 +90,15 @@
     "previouslyBookedCount": {
       "type": "integer",
       "default": 0
+    },
+    "favorites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::favorite.favorite",
+      "mappedBy": "car"
+    },
+    "fuel_capacity": {
+      "type": "decimal"
     }
   }
 }

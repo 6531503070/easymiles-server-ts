@@ -99,12 +99,6 @@
       "target": "api::history.history",
       "mappedBy": "users_permissions_user"
     },
-    "fevorites": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::fevorite.fevorite",
-      "mappedBy": "users_permissions_user"
-    },
     "reviews": {
       "type": "relation",
       "relation": "oneToMany",
@@ -115,6 +109,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::booking.booking",
+      "mappedBy": "users_permissions_user"
+    },
+    "favorites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::favorite.favorite",
       "mappedBy": "users_permissions_user"
     }
   }

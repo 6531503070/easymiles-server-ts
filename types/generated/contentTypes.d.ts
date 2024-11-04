@@ -424,11 +424,11 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
   };
   attributes: {
     bookings: Schema.Attribute.Relation<'oneToMany', 'api::booking.booking'>;
-    capacity: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    fevorites: Schema.Attribute.Relation<'oneToMany', 'api::fevorite.fevorite'>;
+    favorites: Schema.Attribute.Relation<'oneToMany', 'api::favorite.favorite'>;
+    fuel_capacity: Schema.Attribute.Decimal;
     fuelType: Schema.Attribute.String;
     histories: Schema.Attribute.Relation<'oneToMany', 'api::history.history'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -453,6 +453,7 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
     pricePerDay: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     reviews: Schema.Attribute.Relation<'oneToMany', 'api::review.review'>;
+    seat_capacity: Schema.Attribute.Integer;
     transmission: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -460,12 +461,12 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFevoriteFevorite extends Struct.CollectionTypeSchema {
-  collectionName: 'fevorites';
+export interface ApiFavoriteFavorite extends Struct.CollectionTypeSchema {
+  collectionName: 'favorites';
   info: {
-    displayName: 'Fevorite';
-    pluralName: 'fevorites';
-    singularName: 'fevorite';
+    displayName: 'Favorite';
+    pluralName: 'favorites';
+    singularName: 'favorite';
   };
   options: {
     draftAndPublish: true;
@@ -478,7 +479,7 @@ export interface ApiFevoriteFevorite extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::fevorite.fevorite'
+      'api::favorite.favorite'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1079,7 +1080,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    fevorites: Schema.Attribute.Relation<'oneToMany', 'api::fevorite.fevorite'>;
+    favorites: Schema.Attribute.Relation<'oneToMany', 'api::favorite.favorite'>;
     firstName: Schema.Attribute.String;
     histories: Schema.Attribute.Relation<'oneToMany', 'api::history.history'>;
     lastName: Schema.Attribute.String;
@@ -1129,7 +1130,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::booking.booking': ApiBookingBooking;
       'api::car.car': ApiCarCar;
-      'api::fevorite.fevorite': ApiFevoriteFevorite;
+      'api::favorite.favorite': ApiFavoriteFavorite;
       'api::history.history': ApiHistoryHistory;
       'api::payment.payment': ApiPaymentPayment;
       'api::review.review': ApiReviewReview;

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "fevorites",
+  "collectionName": "favorites",
   "info": {
-    "singularName": "fevorite",
-    "pluralName": "fevorites",
-    "displayName": "Fevorite"
+    "singularName": "favorite",
+    "pluralName": "favorites",
+    "displayName": "Favorite"
   },
   "options": {
     "draftAndPublish": true
@@ -15,13 +15,13 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "fevorites"
+      "inversedBy": "favorites"
     },
     "car": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::car.car",
-      "inversedBy": "fevorites"
+      "inversedBy": "favorites"
     }
   }
 }
