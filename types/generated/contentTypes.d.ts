@@ -434,7 +434,6 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::car.car'> &
       Schema.Attribute.Private;
-    model: Schema.Attribute.String;
     model_brand: Schema.Attribute.String;
     model_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'

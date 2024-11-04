@@ -72,9 +72,6 @@
       "target": "api::history.history",
       "mappedBy": "car"
     },
-    "model": {
-      "type": "string"
-    },
     "reviews": {
       "type": "relation",
       "relation": "oneToMany",
