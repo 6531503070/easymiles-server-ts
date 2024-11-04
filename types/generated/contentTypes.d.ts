@@ -429,7 +429,7 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     favorites: Schema.Attribute.Relation<'oneToMany', 'api::favorite.favorite'>;
     fuel_capacity: Schema.Attribute.Decimal;
-    fuelType: Schema.Attribute.String;
+    fuel_type: Schema.Attribute.String;
     histories: Schema.Attribute.Relation<'oneToMany', 'api::history.history'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::car.car'> &
@@ -449,7 +449,7 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
     >;
     previouslyBookedCount: Schema.Attribute.Integer &
       Schema.Attribute.DefaultTo<0>;
-    pricePerDay: Schema.Attribute.Decimal;
+    price_per_day: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     reviews: Schema.Attribute.Relation<'oneToMany', 'api::review.review'>;
     seat_capacity: Schema.Attribute.Integer;

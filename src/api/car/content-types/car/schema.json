@@ -18,10 +18,10 @@
     "transmission": {
       "type": "string"
     },
-    "fuelType": {
+    "fuel_type": {
       "type": "string"
     },
-    "pricePerDay": {
+    "price_per_day": {
       "type": "decimal"
     },
     "model_type": {
