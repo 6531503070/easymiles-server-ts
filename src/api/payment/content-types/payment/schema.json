@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "singularName": "payment",
+    "pluralName": "payments",
+    "displayName": "Payment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "method": {
+      "type": "string"
+    },
+    "payment_status": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "transactionDate": {
+      "type": "datetime"
+    },
+    "cardNumber": {
+      "type": "string"
+    },
+    "expirationDate": {
+      "type": "string"
+    },
+    "cvc": {
+      "type": "string"
+    }
+  }
+}

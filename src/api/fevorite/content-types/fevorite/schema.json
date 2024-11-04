@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fevorites",
+  "info": {
+    "singularName": "fevorite",
+    "pluralName": "fevorites",
+    "displayName": "Fevorite"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "fevorites"
+    },
+    "car": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::car.car",
+      "inversedBy": "fevorites"
+    }
+  }
+}

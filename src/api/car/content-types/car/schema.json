@@ -1,0 +1,101 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cars",
+  "info": {
+    "singularName": "car",
+    "pluralName": "cars",
+    "displayName": "Car",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "capacity": {
+      "type": "integer"
+    },
+    "transmission": {
+      "type": "string"
+    },
+    "fuelType": {
+      "type": "string"
+    },
+    "pricePerDay": {
+      "type": "decimal"
+    },
+    "model_type": {
+      "type": "enumeration",
+      "enum": [
+        "UNCLASSIFIED",
+        "Sport",
+        "SUV",
+        "MPV",
+        "Sedan",
+        "Coupe",
+        "Hatchback"
+      ],
+      "default": "UNCLASSIFIED",
+      "required": true
+    },
+    "model_year": {
+      "type": "integer"
+    },
+    "model_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "model_brand": {
+      "type": "string"
+    },
+    "part_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::history.history",
+      "mappedBy": "car"
+    },
+    "model": {
+      "type": "string"
+    },
+    "fevorites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fevorite.fevorite",
+      "mappedBy": "car"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "car"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "car"
+    },
+    "previouslyBookedCount": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
