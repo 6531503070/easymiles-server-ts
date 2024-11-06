@@ -497,7 +497,10 @@ export interface ApiHistoryHistory extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    booking_info: Schema.Attribute.Component<'booking.book', false>;
+    book_location: Schema.Attribute.Component<
+      'book-location.book-location',
+      false
+    >;
     car: Schema.Attribute.Relation<'manyToOne', 'api::car.car'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
