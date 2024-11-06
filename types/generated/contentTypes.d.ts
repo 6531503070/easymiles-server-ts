@@ -381,7 +381,6 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    booking_ref: Schema.Attribute.Relation<'oneToOne', 'api::history.history'>;
     booking_status: Schema.Attribute.String;
     car: Schema.Attribute.Relation<'manyToOne', 'api::car.car'>;
     createdAt: Schema.Attribute.DateTime;
@@ -444,10 +443,6 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'UNCLASSIFIED'>;
     model_year: Schema.Attribute.Integer;
-    notification: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::notification.notification'
-    >;
     part_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
@@ -508,6 +503,7 @@ export interface ApiHistoryHistory extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    booking_info: Schema.Attribute.Component<'booking.book', false>;
     car: Schema.Attribute.Relation<'manyToOne', 'api::car.car'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -518,46 +514,15 @@ export interface ApiHistoryHistory extends Struct.CollectionTypeSchema {
       'api::history.history'
     > &
       Schema.Attribute.Private;
-    payment_status: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'pedding'>;
-    price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
-    rental_ref: Schema.Attribute.Relation<'oneToOne', 'api::booking.booking'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-  };
-}
-
-export interface ApiNotificationNotification
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'notifications';
-  info: {
-    displayName: 'Notification';
-    pluralName: 'notifications';
-    singularName: 'notification';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::notification.notification'
+    receipt_verification: Schema.Attribute.Media<'images' | 'files'>;
+    rent_price: Schema.Attribute.Decimal;
+    transaction_status: Schema.Attribute.Enumeration<
+      ['Pending', 'Successful', 'Failed']
     > &
-      Schema.Attribute.Private;
-    notification_status: Schema.Attribute.Enumeration<['Success', 'Failed']>;
-    publishedAt: Schema.Attribute.DateTime;
-    reason: Schema.Attribute.String;
-    target_car: Schema.Attribute.Relation<'oneToOne', 'api::car.car'>;
+      Schema.Attribute.DefaultTo<'Pending'>;
+    transaction_status_reason: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Waiting for employee checking.'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1128,10 +1093,6 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
-    notifications: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::notification.notification'
-    >;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -1174,7 +1135,6 @@ declare module '@strapi/strapi' {
       'api::car.car': ApiCarCar;
       'api::favorite.favorite': ApiFavoriteFavorite;
       'api::history.history': ApiHistoryHistory;
-      'api::notification.notification': ApiNotificationNotification;
       'api::payment.payment': ApiPaymentPayment;
       'api::review.review': ApiReviewReview;
       'plugin::content-releases.release': PluginContentReleasesRelease;

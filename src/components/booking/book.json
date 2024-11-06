@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_booking_books",
+  "info": {
+    "displayName": "book"
+  },
+  "options": {},
+  "attributes": {
+    "pickupLocation": {
+      "type": "string"
+    },
+    "pickupDate": {
+      "type": "date"
+    },
+    "pickupTime": {
+      "type": "datetime"
+    },
+    "dropoffLocation": {
+      "type": "string"
+    },
+    "dropoffDate": {
+      "type": "date"
+    },
+    "dropoffTime": {
+      "type": "time"
+    }
+  }
+}

@@ -96,12 +96,6 @@
     },
     "fuel_capacity": {
       "type": "decimal"
-    },
-    "notification": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::notification.notification",
-      "mappedBy": "target_car"
     }
   }
 }

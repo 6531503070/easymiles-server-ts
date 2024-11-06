@@ -47,12 +47,6 @@
       "relation": "manyToOne",
       "target": "api::car.car",
       "inversedBy": "bookings"
-    },
-    "booking_ref": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::history.history",
-      "inversedBy": "rental_ref"
     }
   }
 }
