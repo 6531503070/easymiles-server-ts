@@ -35,18 +35,6 @@
     },
     "totalPrice": {
       "type": "decimal"
-    },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "bookings"
-    },
-    "car": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::car.car",
-      "inversedBy": "bookings"
     }
   }
 }

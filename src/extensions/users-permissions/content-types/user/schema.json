@@ -105,12 +105,6 @@
       "target": "api::review.review",
       "mappedBy": "users_permissions_user"
     },
-    "bookings": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::booking.booking",
-      "mappedBy": "users_permissions_user"
-    },
     "favorites": {
       "type": "relation",
       "relation": "oneToMany",

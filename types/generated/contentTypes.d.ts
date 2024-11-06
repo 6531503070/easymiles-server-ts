@@ -382,7 +382,6 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
   };
   attributes: {
     booking_status: Schema.Attribute.String;
-    car: Schema.Attribute.Relation<'manyToOne', 'api::car.car'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -403,10 +402,6 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -422,7 +417,6 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    bookings: Schema.Attribute.Relation<'oneToMany', 'api::booking.booking'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1032,7 +1026,6 @@ export interface PluginUsersPermissionsUser
   attributes: {
     address: Schema.Attribute.Text;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    bookings: Schema.Attribute.Relation<'oneToMany', 'api::booking.booking'>;
     cars: Schema.Attribute.Relation<'oneToMany', 'api::car.car'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
