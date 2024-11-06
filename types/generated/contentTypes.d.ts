@@ -533,40 +533,6 @@ export interface ApiHistoryHistory extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiPaymentPayment extends Struct.CollectionTypeSchema {
-  collectionName: 'payments';
-  info: {
-    displayName: 'Payment';
-    pluralName: 'payments';
-    singularName: 'payment';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    amount: Schema.Attribute.Decimal;
-    cardNumber: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    cvc: Schema.Attribute.String;
-    expirationDate: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::payment.payment'
-    > &
-      Schema.Attribute.Private;
-    method: Schema.Attribute.String;
-    payment_status: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    transactionDate: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiReviewReview extends Struct.CollectionTypeSchema {
   collectionName: 'reviews';
   info: {
@@ -1135,7 +1101,6 @@ declare module '@strapi/strapi' {
       'api::car.car': ApiCarCar;
       'api::favorite.favorite': ApiFavoriteFavorite;
       'api::history.history': ApiHistoryHistory;
-      'api::payment.payment': ApiPaymentPayment;
       'api::review.review': ApiReviewReview;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
