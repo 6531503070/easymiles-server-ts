@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notifications",
+  "info": {
+    "singularName": "notification",
+    "pluralName": "notifications",
+    "displayName": "Notification"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "notifications"
+    },
+    "target_car": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::car.car",
+      "inversedBy": "notification"
+    },
+    "notification_status": {
+      "type": "enumeration",
+      "enum": [
+        "Success",
+        "Failed"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    }
+  }
+}

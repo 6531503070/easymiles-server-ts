@@ -444,6 +444,10 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'UNCLASSIFIED'>;
     model_year: Schema.Attribute.Integer;
+    notification: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::notification.notification'
+    >;
     part_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
@@ -519,6 +523,41 @@ export interface ApiHistoryHistory extends Struct.CollectionTypeSchema {
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     rental_ref: Schema.Attribute.Relation<'oneToOne', 'api::booking.booking'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiNotificationNotification
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'notifications';
+  info: {
+    displayName: 'Notification';
+    pluralName: 'notifications';
+    singularName: 'notification';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::notification.notification'
+    > &
+      Schema.Attribute.Private;
+    notification_status: Schema.Attribute.Enumeration<['Success', 'Failed']>;
+    publishedAt: Schema.Attribute.DateTime;
+    reason: Schema.Attribute.String;
+    target_car: Schema.Attribute.Relation<'oneToOne', 'api::car.car'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1089,6 +1128,10 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    notifications: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::notification.notification'
+    >;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -1131,6 +1174,7 @@ declare module '@strapi/strapi' {
       'api::car.car': ApiCarCar;
       'api::favorite.favorite': ApiFavoriteFavorite;
       'api::history.history': ApiHistoryHistory;
+      'api::notification.notification': ApiNotificationNotification;
       'api::payment.payment': ApiPaymentPayment;
       'api::review.review': ApiReviewReview;
       'plugin::content-releases.release': PluginContentReleasesRelease;
