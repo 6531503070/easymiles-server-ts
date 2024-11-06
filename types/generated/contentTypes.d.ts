@@ -369,42 +369,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
-  collectionName: 'bookings';
-  info: {
-    description: '';
-    displayName: 'Booking';
-    pluralName: 'bookings';
-    singularName: 'booking';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    booking_status: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    dropoffDate: Schema.Attribute.Date;
-    dropoffLocation: Schema.Attribute.String;
-    dropoffTime: Schema.Attribute.Time;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::booking.booking'
-    > &
-      Schema.Attribute.Private;
-    pickupDate: Schema.Attribute.Date;
-    pickupLocation: Schema.Attribute.String;
-    pickupTime: Schema.Attribute.Time;
-    publishedAt: Schema.Attribute.DateTime;
-    totalPrice: Schema.Attribute.Decimal;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiCarCar extends Struct.CollectionTypeSchema {
   collectionName: 'cars';
   info: {
@@ -1093,7 +1057,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::booking.booking': ApiBookingBooking;
       'api::car.car': ApiCarCar;
       'api::favorite.favorite': ApiFavoriteFavorite;
       'api::history.history': ApiHistoryHistory;
