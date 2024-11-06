@@ -3,15 +3,14 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface BookLocationBookLocation extends Struct.ComponentSchema {
   collectionName: 'components_book_location_book_locations';
   info: {
+    description: '';
     displayName: 'book_location';
   };
   attributes: {
-    dropoffDate: Schema.Attribute.Date;
+    dropoffDateTime: Schema.Attribute.DateTime;
     dropoffLocation: Schema.Attribute.String;
-    dropoffTime: Schema.Attribute.Time;
-    pickupDate: Schema.Attribute.Date;
+    pickupDateTime: Schema.Attribute.DateTime;
     pickupLocation: Schema.Attribute.String;
-    pickupTime: Schema.Attribute.DateTime;
   };
 }
 

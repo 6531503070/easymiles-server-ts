@@ -93,23 +93,23 @@
       "target": "api::car.car",
       "mappedBy": "username"
     },
-    "histories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::history.history",
-      "mappedBy": "users_permissions_user"
-    },
     "reviews": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::review.review",
       "mappedBy": "users_permissions_user"
     },
+    "histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::history.history",
+      "mappedBy": "user"
+    },
     "favorites": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::favorite.favorite",
-      "mappedBy": "users_permissions_user"
+      "mappedBy": "user"
     }
   }
 }

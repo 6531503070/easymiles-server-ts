@@ -420,6 +420,7 @@ export interface ApiCarCar extends Struct.CollectionTypeSchema {
 export interface ApiFavoriteFavorite extends Struct.CollectionTypeSchema {
   collectionName: 'favorites';
   info: {
+    description: '';
     displayName: 'Favorite';
     pluralName: 'favorites';
     singularName: 'favorite';
@@ -442,7 +443,7 @@ export interface ApiFavoriteFavorite extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
+    user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
     >;
@@ -483,11 +484,11 @@ export interface ApiHistoryHistory extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.DefaultTo<'Pending'>;
     transaction_status_reason: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Waiting for employee checking.'>;
+      Schema.Attribute.DefaultTo<'(Waiting verification for employees)'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
+    user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
     >;
